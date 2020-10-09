@@ -1,16 +1,19 @@
 <template>
-<div id="body_div">
-  <div id="top_div">
-    <div id="bg_img">
-      <img src="@/assets/images/u259.png" />
-    </div>
-    <div id="swipe_div">
-      <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-        <van-swipe-item v-for="(image, index) in images" :key="index">
-          <img :src="image.idView" width="95%"/>
-        </van-swipe-item>
-      </van-swipe>
-    </div>
+  <div id="body_div">
+    <div id="top_div">
+      <div id="bg_img">
+        <van-nav-bar
+          title="首页"
+          fixed="true"
+        />
+      </div>
+      <div id="swipe_div">
+        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+          <van-swipe-item v-for="(image, index) in images" :key="index">
+            <img :src="image.idView" width="95%" />
+          </van-swipe-item>
+        </van-swipe>
+      </div>
       <van-row>
         <van-col span="6"><img src="@/assets/images/u246.png" /></van-col>
         <van-col span="6"><img src="@/assets/images/u255.png" /></van-col>
@@ -23,18 +26,24 @@
         <van-col span="6"><router-link to="#">选课</router-link></van-col>
         <van-col span="6"><router-link to="#">提分密题</router-link></van-col>
       </van-row>
-  </div>
-  <div id="bottom_div">
-      <img src="@/assets/images/u275.png" width="98%"/>
-      <img src="@/assets/images/u275.png" width="98%"/>
-      <img src="@/assets/images/u275.png" width="98%"/>
-  </div>
+    </div>
+    <div id="bottom_div">
+      <img src="@/assets/images/u275.png" width="98%" />
+      <img src="@/assets/images/u275.png" width="98%" />
+      <img src="@/assets/images/u275.png" width="98%" />
+    </div>
+    <van-tabbar v-model="active">
+      <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
+      <van-tabbar-item name="setting" icon="orders-o">订单</van-tabbar-item>
+      <van-tabbar-item name="friends" icon="friends-o">我的</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      active: "home",
       images: [
         { idView: require("@/assets/images/u262.png") },
         { idView: require("@/assets/images/u263.png") },
@@ -48,7 +57,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .my-swipe .van-swipe-item {
   color: #fff;
   font-size: 20px;
@@ -58,15 +67,21 @@ export default {
 #bg_img {
   position: absolute;
   top: 0px;
+  width: 100%;
+  height: 25%;
+  background-color: rgb(91, 160, 250);
 }
-#top_div{
-    background-color: #fff;
-    margin-bottom: 20px;
-    height: 50%;
+#top_div {
+  background-color: #fff;
+  margin-bottom: 20px;
+  height: 50%;
 }
-#body_div{
-    background-color: #f2f2f2;
-    height: 100%;
+#body_div {
+  background-color: #f2f2f2;
+  height: 100%;
 }
-
+.van-nav-bar{
+  background-color: rgb(66, 195, 247);
+ 
+}
 </style>
