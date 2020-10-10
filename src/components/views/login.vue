@@ -18,13 +18,13 @@
         <van-field
           v-model="username"
           placeholder="请输入用户名"
-          left-icon="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/%E7%99%BB%E9%99%86/u101.png?token=ec0c2fa363d53332db5706bd311bd9c01b3e39b6a50a3453a5a8d7ca44de6384"
+          left-icon="	https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u101.png"
           :rules="[{ required: true, message: '请填写用户名' }]"
         />
         <van-field
           v-model="password"
           type="password"
-          left-icon="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/%E7%99%BB%E9%99%86/u102.png?token=c7cb4c8843b3a009e79a963d07a27a5cedf1553595e9eeb2c0f7a9282ac9dc79"
+          left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
           placeholder="请输入密码"
           :rules="[{ required: true, message: '请填写密码' }]"
         />
@@ -37,7 +37,7 @@
       <van-row>
         <van-col span="8"><font></font></van-col>
         <van-col span="8"></van-col>
-        <van-col span="8"><router-link to="#">
+        <van-col span="8"><router-link to="forget">
           <span id="sp1">忘记密码</span></router-link></van-col >
       </van-row>
     </div>
