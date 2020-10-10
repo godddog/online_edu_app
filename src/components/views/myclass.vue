@@ -4,8 +4,7 @@
   left-text="返回"
 
   left-arrow
-  @click-left="onClickLeft"
- />
+  @click-left="onClickLeft"/>
 
 </template>
 <script>
