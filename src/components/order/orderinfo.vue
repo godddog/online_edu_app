@@ -7,7 +7,7 @@
         <van-image
           width="61"
           height="57"
-          src="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/%E8%AE%A2%E5%8D%95%E8%AF%A6%E6%83%85/u824.png?token=1ce798dd4ee63c873ddbc5b90e396a3615568eb29a23a5978f36bda46d800cc8"
+          src="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/订单详情/u824.png?token=02cd5adc45d0d0a77ddc97b57aaae0e741c280e604d3575037040f657382a00f"
         />
       </van-col>
       <van-col span="15" offset="1">
@@ -21,7 +21,7 @@
     <van-card
       price="480.00/月"
       title="2020高考物理抢跑夺分特训营"
-      thumb="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/%E8%80%81%E5%B8%88%E8%AF%BE%E7%A8%8B/u560.png?token=23744696f22cd23154e0a551109453ede69edfb85c4e43d61225ad435ac2b1b5"
+      thumb="http://www.axshare.cn/gsc/EX2C2X/40/37/99/403799691ab0480d9b541774fe6934f6/images/老师课程/u560.png?token=c6e40ddd0468e5619d5e6416b162f5352fdd706088c56d2ba3a967f2ce1b9062"
     >
     </van-card>
     <van-divider />
