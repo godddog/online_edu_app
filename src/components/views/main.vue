@@ -1,9 +1,6 @@
 <template>
   <div id="body_div">
-    <div id="top_div">
-      <div id="bg_img">
-        <van-nav-bar title="首页" fixed="true" />
-      </div>
+    <div id="top_div">     
       <div id="swipe_div">
         <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="(image, index) in images" :key="index">
@@ -20,7 +17,7 @@
       <van-row>
         <van-col span="6"><router-link to="#">课堂</router-link></van-col>
         <van-col span="6"><router-link to="#">选老师</router-link></van-col>
-        <van-col span="6"><router-link to="#">选课</router-link></van-col>
+        <van-col span="6"><router-link to="myclass">选课</router-link></van-col>
         <van-col span="6"><router-link to="#">提分密题</router-link></van-col>
       </van-row>
     </div>
@@ -38,8 +35,9 @@
       </div>
       <img src="@/assets/images/u275.png" width="100%" />
       <div id="m120">
-              {{item.tip}}<br> 
+              &ensp;{{item.tip}}<br> 
       <div id="m123">
+         &ensp;
         <img src="@/assets/icon/u276.png"/>
           开课时间:&nbsp;&nbsp;2020-01-01
       </div>
@@ -52,11 +50,11 @@
     </tr>
   </table>
 </van-list>
-    <van-tabbar v-model="active">
-      <van-tabbar-item name="home" icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item name="setting" icon="orders-o">订单</van-tabbar-item>
-      <van-tabbar-item name="friends" icon="friends-o">我的</van-tabbar-item>
-    </van-tabbar>
+    <!-- <van-tabbar v-model="active">
+      <van-tabbar-item name="home" icon="home-o"><router-link to="/">首页</router-link></van-tabbar-item>
+      <van-tabbar-item name="setting" icon="orders-o"><router-link to="/">订单</router-link></van-tabbar-item>
+      <van-tabbar-item name="friends" icon="friends-o"><router-link to="#">我的</router-link></van-tabbar-item>
+    </van-tabbar> -->
   </div>
 </template>
 <script>
@@ -109,12 +107,9 @@ export default {
   line-height: 100px;
   text-align: center;
 }
-#bg_img {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  height: 25%;
-  background-color: rgb(91, 160, 250);
+#swipe_div{
+  padding-top: 40px;
+  background-image: url("https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u2665.png");
 }
 #top_div {
   background-color: #fff;
@@ -126,7 +121,7 @@ export default {
   height: 100%;
 }
 .van-nav-bar {
-  background-color: rgb(241, 237, 237);
+  background-color: rgb(238, 242, 247);
 }
 #bottom_div {
   width: 90%;
