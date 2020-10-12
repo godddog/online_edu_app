@@ -12,6 +12,7 @@ import IndexPage from '@/components/index'
 import MyOrder from '@/components/order/myorder' 
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
+import MyClassInfo from '@/components/views/myclassinfo'
 Vue.use(Router)
 
 export default new Router({
@@ -29,11 +30,7 @@ export default new Router({
       path: '/agree',
       component: agree
     },
-    {
-
-      path: '/myClass',
-      component: MyClass
-    },
+    
     {
       path: '/forget',
       component: forget
@@ -47,6 +44,8 @@ export default new Router({
         { path: "/myOrder", component: MyOrder},
         { path: "/student", component: StudentPage},
         { path: "/teacher", component: TeacherPage},
+        {path: '/myClass', component: MyClass},
+        {path: '/myClassInfo', component: MyClassInfo},
       ]
     }
   ]
