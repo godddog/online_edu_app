@@ -1,7 +1,7 @@
 <template>
   <div id="main_div">
     <van-nav-bar
-      title="注册"
+      title="密码重置"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
@@ -15,14 +15,14 @@
         <van-field
           v-model="username"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u168.png"
-          placeholder="请输入真实用户名"
-          :rules="[{ required: true, message: '用户名不正确' }]"
+          placeholder="请输入账号"
+          :rules="[{ required: true, message: '账号不能为空' }]"
         />
         <van-field
           v-model="tel"
           type="tel"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u101.png"
-          placeholder="请输入手机号"
+          placeholder="请输入绑定手机号"
           :rules="[{ required: true, message: '请输入手机号码' }]"
         />
         <van-field
@@ -41,7 +41,7 @@
           v-model="password"
           type="password"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
-          placeholder="请输入密码"
+          placeholder="请输入新密码"
           :rules="[{ pattern, message: '密码格式不正确' }]"
         />
         <van-field
@@ -50,14 +50,9 @@
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
           placeholder="请确认密码"
           :rules="[{ validator, message: '两次密码不一致' }]"/>
-        <van-radio-group v-model="radio">
-          <van-radio name="1"
-            >已阅读并同意《<router-link to="agree"
-              ><span id="sp1">用户许可协议</span></router-link>》</van-radio>
-        </van-radio-group>
         <div style="margin: 16px">
           <van-button round block type="info" native-type="submit">
-            注册
+            重置
           </van-button>
         </div>
       </van-form>
@@ -69,10 +64,9 @@ export default {
   data() {
     return {
       username: "",
-      tel: "",
+      tel: '',
       password: "",
       password2: "",
-      redio: "1",
       sms: '',
       pattern: /^[a-zA-Z]\w{5,17}$/,
     };
