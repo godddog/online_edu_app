@@ -16,7 +16,7 @@
     <div id="p203">
       <van-row gutter="20">
         <van-col span="8">
-            <router-link to="MyOrder">
+            <router-link to="myClass">
             <img src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/%E8%AF%BE%E7%A8%8B.png" height="50px">
         <br>我的课程</router-link>
         </van-col>
@@ -48,8 +48,8 @@ export default {
 <style scoped>
 #p202 {
   position: absolute;
-  top: 13%;
-  left: 41%;
+  top: 12%;
+  left: 40%;
 }
 #p203{
     margin-top: 50px;

@@ -1,42 +1,29 @@
 <template>
-<div1>
-   <van-nav-bar title="我的课程" left-text="返回" left-arrow@click-left="onClickLeft"/>
-<div2>
-  <van-card
-  num="2"
-  price="2.00"
-  desc="描述信息"
-  title="商品标题"
-  thumb="https://img.yzcdn.cn/vant/ipad.jpeg"
->
-  <template #tags>
-    <van-tag plain type="danger">标签</van-tag>
-    <van-tag plain type="danger">标签</van-tag>
-  </template>
-  <template #footer>
-    <van-button size="mini">按钮</van-button>
-    <van-button size="mini">按钮</van-button>
-  </template>
-</van-card>
-</div2>
+    <div1>
+            <div2>
+              <van-nav-bar
+              title="我的课程" left-text="返回" left-arrow @click-left="onClickLeft"/>
+            </div2>
+            <div3>
+            <van-tabs type="card">
+              <van-tab title="未结课">未结课</van-tab>
 
-</div1>
+              <van-tab title="已结课">已结课</van-tab>
+            </van-tabs>
+            </div3>
+    </div1>
 </template>
 <script>
 export default {
-      methods: {
+  methods: {
     onClickLeft() {
-      Toast('返回');
+     alert("返回");
+    this.$router.push("/");
     },
     
   },
-   data() {
-    return {
-      activeName: 'a',
-    };
-  },
 }
 </script>
-<style scoped>
+<style>
 
 </style>
