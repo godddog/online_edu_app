@@ -35,7 +35,8 @@ export default new Router({
 
       path: '/myClass',
       component: MyClass
-
+    },
+    {
       path: '/forget',
       component: forget
 
