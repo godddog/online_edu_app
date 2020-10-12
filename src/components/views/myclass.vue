@@ -18,7 +18,7 @@ export default {
   methods: {
     onClickLeft() {
      alert("返回");
-    this.$router.push("/main");
+    this.$router.push("/");
     },
     
   },
