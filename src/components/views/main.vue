@@ -18,7 +18,7 @@
         <van-col span="6"><img src="@/assets/images/u252.png" /></van-col>
       </van-row>
       <van-row>
-        <van-col span="6"><router-link to="#">课堂</router-link></van-col>
+        <van-col span="6"><router-link to="allsubject">课堂</router-link></van-col>
         <van-col span="6"><router-link to="#">选老师</router-link></van-col>
         <van-col span="6"><router-link to="#">选课</router-link></van-col>
         <van-col span="6"><router-link to="#">提分密题</router-link></van-col>
