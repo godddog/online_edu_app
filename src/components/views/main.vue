@@ -39,7 +39,7 @@
       <div id="m123">
          &ensp;
         <img src="@/assets/icon/u276.png"/>
-          开课时间:&nbsp;&nbsp;2020-01-01
+          开课时间:&nbsp;&nbsp;{{item.time}}
       </div>
       <div id="m124">
         <van-button type="primary" to="index">立即报名</van-button>
@@ -72,8 +72,8 @@ export default {
         { idView: require("@/assets/images/u270.png") },
       ],
       subjectInfo: [
-        {tip:'2020高考抢分训练营'},
-         {tip:'2020高考抢分训练营'}
+        {tip:'2020高考抢分训练营',time:'2020-10-12'},
+         {tip:'2020高考抢分训练营',time:'2020-11-13'}
       ],
       loading: false,
       finished: false,

@@ -13,9 +13,7 @@ import MyOrder from '@/components/order/myorder'
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
 Vue.use(Router)
-
-export default new Router({
-  routes: [
+  const routes = [
     {
       path: '/login',
       name: 'Login',
@@ -41,13 +39,33 @@ export default new Router({
    
     {
       path: '/',
+      name: '/',
       component: IndexPage,
       children: [
-        { path: "/", component: Main },
+        { path: "/", name: '/', component: Main },
         { path: "/myOrder", component: MyOrder},
         { path: "/student", component: StudentPage},
         { path: "/teacher", component: TeacherPage},
       ]
     }
   ]
-})
+  const router= new Router({
+    mode:"history",
+    routes,
+  
+  })
+  router.beforeEach((to,from,next)=>{
+   if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
+      next();
+   }else{
+      let author =localStorage.getItem('Author');
+      if(author===null||author===""){
+        next('/login');
+      }else{
+        next();
+      }
+    }
+  });
+  
+  export default router;
+

@@ -84,7 +84,7 @@ export default {
 <style scoped>
 #t202 {
   position: absolute;
-  top: 13%;
+  top: 14%;
   left: 40%;
 }
 #p203{
