@@ -67,6 +67,11 @@ export default {
   },
   methods: {
     onSubmit() {
+      Toast.loading({
+        message: "登录中...",
+        forbidClick: true,
+        loadingType: "spinner",
+      });
       this.$axios
         .post("/lg/login", {
           tel: this.tel,

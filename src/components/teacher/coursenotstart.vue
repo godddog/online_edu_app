@@ -1,0 +1,163 @@
+<template>
+    <div>
+        <div class="div1-1">
+            <van-nav-bar
+            left-arrow
+            @click-left="onClickLeft"
+            />
+        </div>
+        <div class="div1-2">我的课程</div>
+        <div class="div2-1">
+            <img width="100%" height="100%" src="https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u947.jpg"/>
+
+        </div>
+        <div class="div2-2">
+            <div class="div2-3">{{subject.name}}</div>
+            <div class="div2-4-1">时间 : </div><div class="div2-4-2"><p>{{subject.liveTime}}</p></div>
+            <div class="div2-4-3">时长 : </div><div class="div2-4-4"><p>{{subject.time}} 分钟</p></div>
+            <div class="div2-4-5">老师 : </div><div class="div2-4-6"><p>{{subject.teacherName}}</p></div>
+        </div>
+        <div class="div3">
+            &nbsp
+        </div>
+        <div class="div4">
+            <div class="div4-1">
+                课程目录<van-divider />
+            </div>
+            <div class="div4-2">
+                <table>
+                    <tr v-for="(catalogue ,index) in subjectCatalogue" :key="catalogue" :title="item">
+                        <td><div class="div_td1">{{index+1}}</div></td>
+                        <td>
+                            <div class="div_td1">{{catalogue.name}}</div>
+                            <div class="div_td3">直播时间</div>
+                            <div class="div_td4">{{catalogue.liveTime}}</div>
+                        </td>
+                        <td>
+                            <div class="div_td5">
+                               直播回看
+                            </div>
+                        </td>
+                        <van-divider />
+                        
+                    </tr>
+                    
+                </table>
+            </div>
+            
+            
+        </div>
+    </div>
+</template>
+<script>
+import teacherVue from '../user_page/teacher.vue'
+export default {
+    data() {
+        return{
+            subject:{
+                liveTime:"11月20日 20:30",
+                name:"2020高考物理抢跑夺分特训营",
+                time:"60",
+                teacherName:"jeffry",
+            },
+            subjectCatalogue:[
+                {
+                    liveTime:" 2019-05-22 10:30",
+                    name:"高中数学解三角形+角平分线难点突破1",
+                },
+                {
+                    liveTime:" 2019-05-23 10:30",
+                    name:"高中数学解三角形+角平分线难点突破2",
+                },
+                {
+                    liveTime:" 2019-05-24 10:30",
+                    name:"高中数学解三角形+角平分线难点突破3",
+                },
+            ]
+        }
+    },
+    
+}
+</script>
+<style scoped>
+.div1-1{
+    width: 10%;
+    float: left;
+}
+.div1-2{
+    width: 90%;
+    float: left;
+    font-weight:bold;
+    margin-top: 4%;
+}
+.div2-1{
+    
+    width: 100%;
+}
+.div2-2{
+    text-align: center;
+    margin-top: -3%;
+    padding-top: 4%;
+    padding-bottom: 1%;
+    color: black;
+}
+.div2-3{
+    
+    width: 100%;
+    margin: 2% 3% 10% 2%;
+    text-align: left;
+    font-size: 24px;
+}
+.div2-4-1,.div2-4-3,.div2-4-5{
+
+    position: absolute;
+    width: 20%;
+    margin-left:2%;
+    text-align: left;
+    font-size: 20px;
+    color:slategrey
+}
+.div2-4-2,.div2-4-4,.div2-4-6{
+    width: 80%;
+    margin-left: 20%;
+    text-align: left;
+    font-size: 20px;
+}
+.div3{
+    background-color: rgba(167, 172, 172, 0.144);
+    width: 100%;
+}
+.div4{
+    width: 100%;
+    margin-top: 2%;     
+}
+.div4-1{
+    text-align: left;
+    font-size: 25px;
+    margin-left: 2%;
+}
+.div_td1{
+    position: relative;  
+}
+.div_td2{
+    position: relative;
+    text-align: center;
+}
+.div_td3{
+    position: relative;
+    margin-left: -60%;
+    margin-top: 3%;
+}
+.div_td4{
+    position: relative;
+    margin-left: 30%;
+    margin-top: -7%;
+}
+.div_td5{
+     position: absolute;
+     margin-top: -3%;
+}
+tr{
+    height: 70px;
+}
+</style>

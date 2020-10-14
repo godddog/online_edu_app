@@ -130,11 +130,6 @@ export default {
       });
     },
     sendSMS() {
-      Toast.loading({
-        message: "发送中...",
-        forbidClick: true,
-        loadingType: "spinner",
-      });
       this.$axios
         .get("/lg/send?tel=" + this.userInfo.tel, {})
         .then((response) => {

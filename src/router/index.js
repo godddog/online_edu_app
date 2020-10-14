@@ -13,8 +13,13 @@ import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
 import MyClassInfo from '@/components/views/myclassinfo'
 import SelectTeacher from '@/components/user_page/selectTeacher'
+import Course from '@/components/teacher/course'
+import CourseNotStart from '@/components/teacher/coursenotstart'
+import CourseOver from '@/components/teacher/courseover'
+import CourseStarted from '@/components/teacher/coursestarted'
 
 Vue.use(Router)
+
   const routes = [
     {
       path: '/login',
@@ -42,6 +47,10 @@ Vue.use(Router)
       path: '/forget',
       component: forget
     },
+    {path: '/course',component: Course},
+    {path: '/courseNotStart',component: CourseNotStart},
+    {path: '/courseOver',component: CourseOver},
+    {path: '/courseStarted',component: CourseStarted},
    
     {
       path: '/',
