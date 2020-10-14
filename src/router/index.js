@@ -12,7 +12,7 @@ import MyOrder from '@/components/order/myorder'
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
 import MyClassInfo from '@/components/views/myclassinfo'
-
+import SelectTeacher from '@/components/user_page/selectTeacher'
 
 Vue.use(Router)
   const routes = [
@@ -25,8 +25,10 @@ Vue.use(Router)
       path: '/register',
       component: register
     },
-    
-   
+    {
+      path: '/selectTeacher',
+      component: SelectTeacher
+    },
     {
       path: '/orderinfo',
       component: OrderInfo,

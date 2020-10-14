@@ -6,6 +6,11 @@
         width="100%"
       />
     </div>
+    <div id="t210">
+      <img src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u892.png"
+      width="30px"
+      />
+    </div>
     <div id="t202">
       <img
         src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/%E8%80%81%E5%B8%88.png"
@@ -101,5 +106,10 @@ p {
 #t205{
   margin-left: 30px;
   margin-right: 30px;
+}
+#t210{
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 </style>

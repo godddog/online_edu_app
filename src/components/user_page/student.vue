@@ -6,6 +6,11 @@
         width="100%"
       />
     </div>
+    <div id="t210">
+      <img src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u892.png"
+      width="30px"
+      />
+    </div>
     <div id="p202">
       <img
         src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u870.png"
@@ -48,10 +53,15 @@ export default {
 <style scoped>
 #p202 {
   position: absolute;
-  top: 12%;
+  top: 14%;
   left: 40%;
 }
 #p203{
     margin-top: 50px;
+}
+#t210{
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 </style>

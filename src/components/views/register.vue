@@ -94,26 +94,31 @@ export default {
   methods: {
     onSubmit() {
       if (this.userInfo.radio) {
-          this.$axios
-            .post("/lg/userInfo", {
-              name: this.userInfo.username,
-              tel: this.userInfo.tel,
-              password: this.userInfo.password,
-              sms: this.userInfo.sms
-            })
-            .then((response) => {
-              console.log(response);
-              if (response.data.statusCode == 200) {
-                Toast("注册成功");
-              }else{
-                Toast(response.data.massage);
-              }
-            })
-            .catch((error) => {
-              alert(error);
-            });
+        Toast.loading({
+        message: "注册中...",
+        forbidClick: true,
+        loadingType: "spinner",
+      });
+        this.$axios
+          .post("/lg/userInfo", {
+            name: this.userInfo.username,
+            tel: this.userInfo.tel,
+            password: this.userInfo.password,
+            sms: this.userInfo.sms,
+          })
+          .then((response) => {
+            console.log(response);
+            if (response.data.statusCode == 200) {
+              Toast.success("注册成功");
+            } else {
+              Toast.fail(response.data.massage);
+            }
+          })
+          .catch((error) => {
+            Toast.fail("注册失败，请检查网络连接或稍后重试");
+          });
       } else {
-        Toast("请勾选用户服务协议");
+        Toast.fail("请勾选用户服务协议");
       }
     },
     validator(val) {
@@ -125,6 +130,11 @@ export default {
       });
     },
     sendSMS() {
+      Toast.loading({
+        message: "发送中...",
+        forbidClick: true,
+        loadingType: "spinner",
+      });
       this.$axios
         .get("/lg/send?tel=" + this.userInfo.tel, {})
         .then((response) => {
@@ -132,13 +142,13 @@ export default {
           if (response.data.statusCode == 200) {
             this.status = true;
             this.si = setInterval(this.handleTimeOut, 1000);
-            Toast(response.data.massage);
+            Toast.success(response.data.massage);
           } else {
-            Toast(response.data.massage);
+            Toast.fail(response.data.massage);
           }
         })
         .catch((error) => {
-          alert(error);
+          Toast.fail("短信发送失败");
         });
     },
     handleTimeOut() {

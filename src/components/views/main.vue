@@ -10,13 +10,13 @@
       </div>
       <van-row>
         <van-col span="6"><img src="@/assets/images/u246.png" /></van-col>
-        <van-col span="6"><img src="@/assets/images/u255.png" /></van-col>
+        <van-col span="6"><router-link to="/selectTeacher"><img src="@/assets/images/u255.png" /></router-link></van-col>
         <van-col span="6"><img src="@/assets/images/u249.png" /></van-col>
         <van-col span="6"><img src="@/assets/images/u252.png" /></van-col>
       </van-row>
       <van-row>
         <van-col span="6"><router-link to="#">课堂</router-link></van-col>
-        <van-col span="6"><router-link to="#">选老师</router-link></van-col>
+        <van-col span="6"><router-link to="/selectTeacher">选老师</router-link></van-col>
         <van-col span="6"><router-link to="myclass">选课</router-link></van-col>
         <van-col span="6"><router-link to="#">提分密题</router-link></van-col>
       </van-row>
@@ -42,7 +42,7 @@
           开课时间:&nbsp;&nbsp;{{item.time}}
       </div>
       <div id="m124">
-        <van-button type="primary" to="index">立即报名</van-button>
+        <van-button type="primary" to="myClassInfo">立即报名</van-button>
       </div>
       </div>
     </div>
