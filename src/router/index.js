@@ -2,9 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/views/login'
 import Main from '@/components/views/main'
-
 import MyClass from '@/components/views/myclass'
-
+import OrderInfo from '@/components/order/orderinfo'
 import register from '@/components/views/register'
 import agree from '@/components/views/agreement'
 import forget from '@/components/views/forget'
@@ -17,6 +16,9 @@ import Course from '@/components/teacher/course'
 import CourseNotStart from '@/components/teacher/coursenotstart'
 import CourseOver from '@/components/teacher/courseover'
 import CourseStarted from '@/components/teacher/coursestarted'
+
+import MyClassInfo from '@/components/views/myclassinfo'
+
 Vue.use(Router)
 
 export default new Router({
@@ -31,15 +33,17 @@ export default new Router({
       path: '/register',
       component: register
     },
+    
+   
+    {
+      path: '/orderinfo',
+      component: OrderInfo,
+    },
     {
       path: '/agree',
       component: agree
     },
-    {
-
-      path: '/myClass',
-      component: MyClass
-    },
+    
     {
       path: '/forget',
       component: forget
@@ -57,7 +61,10 @@ export default new Router({
         { path: "/myOrder", component: MyOrder},
         { path: "/student", component: StudentPage},
         { path: "/teacher", component: TeacherPage},
+        {path: '/myClass', component: MyClass},
+        {path: '/myClassInfo', component: MyClassInfo},
       ]
+
     }
   ]
 })
