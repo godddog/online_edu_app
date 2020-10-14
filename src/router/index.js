@@ -12,9 +12,15 @@ import IndexPage from '@/components/index'
 import MyOrder from '@/components/order/myorder' 
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
+
+import Course from '@/components/teacher/course'
+import CourseNotStart from '@/components/teacher/coursenotstart'
+import CourseOver from '@/components/teacher/courseover'
+import CourseStarted from '@/components/teacher/coursestarted'
 Vue.use(Router)
 
 export default new Router({
+  mode:"history",
   routes: [
     {
       path: '/login',
@@ -38,6 +44,10 @@ export default new Router({
       path: '/forget',
       component: forget
     },
+    {path: '/course',component: Course},
+    {path: '/courseNotStart',component: CourseNotStart},
+    {path: '/courseOver',component: CourseOver},
+    {path: '/courseStarted',component: CourseStarted},
    
     {
       path: '/',
