@@ -13,20 +13,20 @@
     <div id="body_div">
       <van-form @submit="onSubmit">
         <van-field
-          v-model="username"
+          v-model="userInfo.username"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u168.png"
           placeholder="请输入真实用户名"
           :rules="[{ required: true, message: '用户名不正确' }]"
         />
         <van-field
-          v-model="tel"
+          v-model="userInfo.tel"
           type="tel"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u101.png"
           placeholder="请输入手机号"
           :rules="[{ required: true, message: '请输入手机号码' }]"
         />
         <van-field
-          v-model="sms"
+          v-model="userInfo.sms"
           center
           clearable
           label="短信验证码"
@@ -34,27 +34,35 @@
           :rules="[{ required: true, message: '请输入验证码' }]"
         >
           <template #button>
-            <van-button size="small" type="primary">发送验证码</van-button>
+            <van-button
+              :disabled="status"
+              size="small"
+              type="primary"
+              @click="sendSMS"
+              id="btn_send"
+              >发送验证码</van-button
+            >
           </template>
         </van-field>
         <van-field
-          v-model="password"
+          v-model="userInfo.password"
           type="password"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
-          placeholder="请输入密码"
+          placeholder="请输入密码(6-20位数字、字母组成，字母开头)"
           :rules="[{ pattern, message: '密码格式不正确' }]"
         />
         <van-field
-          v-model="password2"
+          v-model="userInfo.password2"
           type="password"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
           placeholder="请确认密码"
-          :rules="[{ validator, message: '两次密码不一致' }]"/>
-        <van-radio-group v-model="radio">
-          <van-radio name="1"
-            >已阅读并同意《<router-link to="agree"
-              ><span id="sp1">用户许可协议</span></router-link>》</van-radio>
-        </van-radio-group>
+          :rules="[{ validator, message: '两次密码不一致' }]"
+        />
+        <van-checkbox v-model="userInfo.radio">
+          已阅读并同意《<router-link to="agree"
+            ><span id="sp1">用户许可协议</span></router-link
+          >》
+        </van-checkbox>
         <div style="margin: 16px">
           <van-button round block type="info" native-type="submit">
             注册
@@ -65,29 +73,88 @@
   </div>
 </template>
 <script>
+import { Toast } from "vant";
 export default {
   data() {
     return {
-      username: "",
-      tel: "",
-      password: "",
-      password2: "",
-      redio: "1",
-      sms: '',
-      pattern: /^[a-zA-Z]\w{5,17}$/,
+      userInfo: {
+        username: "",
+        tel: "",
+        password: "",
+        password2: "",
+        radio: "",
+        sms: "",
+      },
+      pattern: /^[a-zA-Z]\w{5,20}$/,
+      time: 60,
+      si: "",
+      status: false,
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+    onSubmit() {
+      if (this.userInfo.radio) {
+        Toast.loading({
+        message: "注册中...",
+        forbidClick: true,
+        loadingType: "spinner",
+      });
+        this.$axios
+          .post("/lg/userInfo", {
+            name: this.userInfo.username,
+            tel: this.userInfo.tel,
+            password: this.userInfo.password,
+            sms: this.userInfo.sms,
+          })
+          .then((response) => {
+            console.log(response);
+            if (response.data.statusCode == 200) {
+              Toast.success("注册成功");
+            } else {
+              Toast.fail(response.data.massage);
+            }
+          })
+          .catch((error) => {
+            Toast.fail("注册失败，请检查网络连接或稍后重试");
+          });
+      } else {
+        Toast.fail("请勾选用户服务协议");
+      }
     },
     validator(val) {
-      return val===this.password;
+      return val === this.userInfo.password;
     },
-     onClickLeft() {
+    onClickLeft() {
       this.$router.push({
-          path: '/login'
-      })
+        path: "/login",
+      });
+    },
+    sendSMS() {
+      this.$axios
+        .get("/lg/send?tel=" + this.userInfo.tel, {})
+        .then((response) => {
+          console.log(response);
+          if (response.data.statusCode == 200) {
+            this.status = true;
+            this.si = setInterval(this.handleTimeOut, 1000);
+            Toast.success(response.data.massage);
+          } else {
+            Toast.fail(response.data.massage);
+          }
+        })
+        .catch((error) => {
+          Toast.fail("短信发送失败");
+        });
+    },
+    handleTimeOut() {
+      document.getElementById("btn_send").innerHTML = this.time + "s后重试";
+      this.time--;
+      if (this.time < 0) {
+        clearInterval(this.si);
+        this.time = 60;
+        document.getElementById("btn_send").innerHTML = "发送验证码";
+        this.status = false;
+      }
     },
   },
 };
