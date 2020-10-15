@@ -72,18 +72,18 @@ Vue.use(Router)
     routes,
   
   })
-  router.beforeEach((to,from,next)=>{
-   if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
-      next();
-   }else{
-      let author =localStorage.getItem('Author');
-      if(author===null||author===""){
-        next('/login');
-      }else{
-        next();
-      }
-    }
-  });
+  // router.beforeEach((to,from,next)=>{
+  //  if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
+  //     next();
+  //  }else{
+  //     let author =localStorage.getItem('Author');
+  //     if(author===null||author===""){
+  //       next('/login');
+  //     }else{
+  //       next();
+  //     }
+  //   }
+  // });
   
   export default router;
 

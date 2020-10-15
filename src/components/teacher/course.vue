@@ -79,6 +79,19 @@ export default {
       finished: false,
     };
   },
+  created: function(){
+      this.$axios
+      .get("myteacher-service/teacher")
+      .then(response=>{
+          console.log(response)
+        //   if(response.status==200){
+        //     this.teacher = response.data.teacher;
+        //   }
+      })
+      .catch(error=>{
+          alert(error)
+      });
+  },
   methods: {
     coursedetail(status){
         if("未开始" === status){

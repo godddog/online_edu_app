@@ -66,7 +66,7 @@
             src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/%E8%AE%A2%E5%8D%95.png"
             height="40px"
         /></van-col>
-        <van-col span="10" style="text-align: left">我的课程</van-col>
+        <van-col span="10" style="text-align: left"><router-link to="course">我的课程</router-link></van-col>
         <van-col span="8"></van-col>
       </van-row>
       <van-divider />
