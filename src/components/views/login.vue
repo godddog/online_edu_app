@@ -16,18 +16,24 @@
       </van-row>
       <van-form @submit="onSubmit">
         <van-field
-          v-model="username"
-          placeholder="请输入用户名"
+          v-model="tel"
+          placeholder="请输入手机号"
           left-icon="	https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u101.png"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          :rules="[{ required: true, message: '手机号不能为空' }]"
         />
         <van-field
           v-model="password"
           type="password"
           left-icon="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/u102.png"
           placeholder="请输入密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          :rules="[{ required: true, message: '密码不能为空' }]"
         />
+        <div style="margin: 20px">
+          <van-radio-group v-model="radio" direction="horizontal">
+            <van-radio name="1">学生</van-radio>
+            <van-radio name="2">老师</van-radio>
+          </van-radio-group>
+        </div>
         <div style="margin: 16px">
           <van-button round block type="info" native-type="submit">
             登录
@@ -37,8 +43,11 @@
       <van-row>
         <van-col span="8"><font></font></van-col>
         <van-col span="8"></van-col>
-        <van-col span="8"><router-link to="forget">
-          <span id="sp1">忘记密码</span></router-link></van-col >
+        <van-col span="8"
+          ><router-link to="forget">
+            <span id="sp1">忘记密码</span></router-link
+          ></van-col
+        >
       </van-row>
     </div>
     <div id="foot_div">
@@ -47,16 +56,51 @@
   </div>
 </template>
 <script>
+import { Toast } from "vant";
 export default {
   data() {
     return {
-      username: "",
+      tel: "",
       password: "",
+      radio: "1",
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+    onSubmit() {
+      Toast.loading({
+        message: "登录中...",
+        forbidClick: true,
+        loadingType: "spinner",
+      });
+      this.$axios
+        .post("/lg/login", {
+          tel: this.tel,
+          password: this.password,
+          radio: this.radio,
+        })
+        .then((response) => {
+          console.log(response);
+          if (response.data.statusCode == 200) {
+            //在前端写入用户状态信息到localStorage中
+            var author = "student";
+            if(response.data.data==2){
+              author = "teacher";
+            }
+             localStorage.setItem('Author',author);
+            //传参页面
+            this.$router.push({
+              name: "/",
+              params: {
+                radio: response.data.data
+              },
+            });
+          } else {
+            Toast(response.data.massage);
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
     },
   },
 };
@@ -65,7 +109,6 @@ export default {
 #main_div {
   width: 100%;
   height: 100%;
-
 }
 #body_div {
   position: relative;
@@ -73,6 +116,7 @@ export default {
 }
 #foot_div {
   margin-bottom: 0px;
+  width: 100%;
   position: absolute;
   bottom: 0px;
 }

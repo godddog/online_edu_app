@@ -15,6 +15,7 @@ import MyOrder from '@/components/order/myorder'
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
 import MyClassInfo from '@/components/views/myclassinfo'
+<<<<<<< HEAD
 import Subjectapply from '@/components/apply/subjectapply'
 import Verifyapply from '@/components/apply/verifyapply'
 import Paysuccess from '@/components/apply/paysuccess'
@@ -25,6 +26,17 @@ Vue.use(Router)
 export default new Router({
   mode: "history",
   routes: [
+=======
+import SelectTeacher from '@/components/user_page/selectTeacher'
+import Course from '@/components/teacher/course'
+import CourseNotStart from '@/components/teacher/coursenotstart'
+import CourseOver from '@/components/teacher/courseover'
+import CourseStarted from '@/components/teacher/coursestarted'
+
+Vue.use(Router)
+
+  const routes = [
+>>>>>>> ff805df1afa79a307dd3ade5d40b404711049009
     {
       path: '/login',
       name: 'Login',
@@ -34,8 +46,10 @@ export default new Router({
       path: '/register',
       component: register
     },
-    
-   
+    {
+      path: '/selectTeacher',
+      component: SelectTeacher
+    },
     {
       path: '/orderinfo',
       component: OrderInfo,
@@ -49,6 +63,7 @@ export default new Router({
       path: '/forget',
       component: forget
     },
+<<<<<<< HEAD
     {
       path: '/allsubject',
       component: AllSubject
@@ -73,11 +88,19 @@ export default new Router({
       path: '/paysuccess',
       component: Paysuccess
     },
+=======
+    {path: '/course',component: Course},
+    {path: '/courseNotStart',component: CourseNotStart},
+    {path: '/courseOver',component: CourseOver},
+    {path: '/courseStarted',component: CourseStarted},
+   
+>>>>>>> ff805df1afa79a307dd3ade5d40b404711049009
     {
       path: '/',
+      name: '/',
       component: IndexPage,
       children: [
-        { path: "/", component: Main },
+        { path: "/", name: '/', component: Main },
         { path: "/myOrder", component: MyOrder},
         { path: "/student", component: StudentPage},
         { path: "/teacher", component: TeacherPage},
@@ -87,4 +110,23 @@ export default new Router({
 
     }
   ]
-})
+  const router= new Router({
+    mode:"history",
+    routes,
+  
+  })
+  router.beforeEach((to,from,next)=>{
+   if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
+      next();
+   }else{
+      let author =localStorage.getItem('Author');
+      if(author===null||author===""){
+        next('/login');
+      }else{
+        next();
+      }
+    }
+  });
+  
+  export default router;
+

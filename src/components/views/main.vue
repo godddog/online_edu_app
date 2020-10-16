@@ -10,13 +10,18 @@
       </div>
       <van-row>
         <van-col span="6"><img src="@/assets/images/u246.png" /></van-col>
-        <van-col span="6"><img src="@/assets/images/u255.png" /></van-col>
+        <van-col span="6"><router-link to="/selectTeacher"><img src="@/assets/images/u255.png" /></router-link></van-col>
         <van-col span="6"><img src="@/assets/images/u249.png" /></van-col>
         <van-col span="6"><img src="@/assets/images/u252.png" /></van-col>
       </van-row>
       <van-row>
+<<<<<<< HEAD
         <van-col span="6"><router-link to="allsubject">课堂</router-link></van-col>
         <van-col span="6"><router-link to="#">选老师</router-link></van-col>
+=======
+        <van-col span="6"><router-link to="#">课堂</router-link></van-col>
+        <van-col span="6"><router-link to="/selectTeacher">选老师</router-link></van-col>
+>>>>>>> ff805df1afa79a307dd3ade5d40b404711049009
         <van-col span="6"><router-link to="myclass">选课</router-link></van-col>
         <van-col span="6"><router-link to="#">提分密题</router-link></van-col>
       </van-row>
@@ -39,10 +44,10 @@
       <div id="m123">
          &ensp;
         <img src="@/assets/icon/u276.png"/>
-          开课时间:&nbsp;&nbsp;2020-01-01
+          开课时间:&nbsp;&nbsp;{{item.time}}
       </div>
       <div id="m124">
-        <van-button type="primary" to="index">立即报名</van-button>
+        <van-button type="primary" to="myClassInfo">立即报名</van-button>
       </div>
       </div>
     </div>
@@ -72,8 +77,8 @@ export default {
         { idView: require("@/assets/images/u270.png") },
       ],
       subjectInfo: [
-        {tip:'2020高考抢分训练营'},
-         {tip:'2020高考抢分训练营'}
+        {tip:'2020高考抢分训练营',time:'2020-10-12'},
+         {tip:'2020高考抢分训练营',time:'2020-11-13'}
       ],
       loading: false,
       finished: false,
