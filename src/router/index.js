@@ -17,6 +17,7 @@ import Course from '@/components/teacher/course'
 import CourseNotStart from '@/components/teacher/coursenotstart'
 import CourseOver from '@/components/teacher/courseover'
 import CourseStarted from '@/components/teacher/coursestarted'
+import UploadHomework from '@/components/teacher/uploadhomework'
 
 Vue.use(Router)
 
@@ -48,9 +49,11 @@ Vue.use(Router)
       component: forget
     },
     {path: '/course',component: Course},
-    {path: '/courseNotStart',component: CourseNotStart},
+    {path: '/courseNotStart',name:'courseNotStart',component: CourseNotStart},
     {path: '/courseOver',component: CourseOver},
     {path: '/courseStarted',component: CourseStarted},
+    {path: '/uploadhomework',component: UploadHomework},
+    // {path: '/courseStarted',component: CourseStarted},
    
     {
       path: '/',
@@ -72,18 +75,7 @@ Vue.use(Router)
     routes,
   
   })
-  // router.beforeEach((to,from,next)=>{
-  //  if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
-  //     next();
-  //  }else{
-  //     let author =localStorage.getItem('Author');
-  //     if(author===null||author===""){
-  //       next('/login');
-  //     }else{
-  //       next();
-  //     }
-  //   }
-  // });
+
   
   export default router;
 

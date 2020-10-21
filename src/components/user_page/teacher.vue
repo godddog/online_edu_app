@@ -32,7 +32,7 @@
         </router-link>
         </van-col>
         <van-col span="8">
-            <router-link to="#">
+            <router-link to="UploadHomework">
             <img src="https://store-1303871256.cos.ap-chengdu.myqcloud.com/photo/%E4%B8%8A%E4%BC%A0.png" height="50px">
         <br>上传作业
         </router-link>

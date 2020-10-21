@@ -2,19 +2,20 @@
     <div>
         <div class="div1-1">
             <van-nav-bar
+            left-text="返回"
             left-arrow
             @click-left="onClickLeft"
             />
         </div>
         <div class="div1-2">我的课程</div>
         <div class="div1-3">
-            <img src="https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u549.png"/>
+            <img src="http://qih85hm7z.hn-bkt.clouddn.com/u549.png"/>
         </div>
         <div class="div1-4">
-            <img src="https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u550.png"/>
+            <img src="http://qih85hm7z.hn-bkt.clouddn.com/u550.png"/>
         </div>
         <div class="div1-5">
-            <img src="https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u551.png"/>
+            <img src="http://qih85hm7z.hn-bkt.clouddn.com/u551.png"/>
         </div>
         <div class="div1-6">
             <van-row type="flex" justify="center">
@@ -35,15 +36,15 @@
                 @load="onLoad"
                 >
                 <table>
-                    <tr v-for="sub in subjectInfo" :key="sub" :title="item">
-                        <td><div class="div_td1"><img :src= "sub.url"></div></td>
-                        <td><div class="div_td2">{{sub.miaoshu}}</div></td>
-                        <td><div class="div_td3">¥ &nbsp{{sub.price}}</div></td>
+                    <tr v-for="(sub) in subjectInfo" :key="sub" :title="item">
+                        <td><div class="div_td1"><img :src= "sub.imgurl" width="100%" ></div></td>
                         <td>
+                            <div class="div_td2">{{sub.miaoshu}}</div>
+                            <div class="div_td3">¥ &nbsp{{sub.price}}</div>
                             <div class="div_td4">
-                                <van-button type="primary" @click= coursedetail(sub.status)>{{sub.status}}</van-button></div>
-                        </td>
-                        
+                                <van-button type="primary" @click= coursedetail(sub.sub_id,sub.status)>{{sub.status}}</van-button>
+                            </div>
+                        </td>                       
                     </tr>
                 </table>
             </van-list>
@@ -55,65 +56,85 @@ export default {
   data() {
     return {
       teacher: {
+          id: "5",
           name:"李雪梅",
           subject:"语文",
           grade:"高一",
           info:"2008年起从事高中语文教学，在线课程明星教师，累计学员超过100万"
       },
       subjectInfo: [
-          {url:"https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u560.png",
+          {
+          sub_id: 2,
+          imgurl:"http://qih85hm7z.hn-bkt.clouddn.com/u560.png",
           miaoshu:"2020高考物理抢跑夺分特训营第一阶段",
           price:"480.00/天",
-          status:"未开始"
+          status:"未开始",
+          time: "20",
+          startLiveTime: "2020-10-10"
           },
-          {url:"https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u560.png",
+          {
+          sub_id: 3,
+          imgurl:"http://qih85hm7z.hn-bkt.clouddn.com/u560.png",
           miaoshu:"2020高考物理抢跑夺分特训营2",
           price:"180.00/天",
-          status:"已结课"},
-          {url:"https://army-1303896772.cos.ap-nanjing.myqcloud.com/education/u560.png",
+          status:"已结课",
+          time: "20",
+          startLiveTime: "2020-10-10"
+          },
+          {
+
+          sub_id: 4,
+          imgurl:"http://qih85hm7z.hn-bkt.clouddn.com/u560.png",
           miaoshu:"2020高考物理抢跑夺分特训营3",
           price:"480.00/月",
-          status:"去直播"}
+          status:"去直播",
+          time: "20",
+          startLiveTime: "2020-10-10"
+          }
       ],
       loading: false,
       finished: false,
+      t_id : 1,
     };
   },
   created: function(){
       this.$axios
-      .get("myteacher-service/teacher")
+      .get("myteacher-service/teacher",{
+          params:{
+              id : this.t_id
+          }
+      })
       .then(response=>{
-          console.log(response)
-        //   if(response.status==200){
-        //     this.teacher = response.data.teacher;
-        //   }
+        //   console.log(response)
+          if(response.status==200){
+            this.teacher = response.data.teacher;
+            this.subjectInfo = response.data.subjectVos;
+          }
       })
       .catch(error=>{
           alert(error)
       });
   },
   methods: {
-    coursedetail(status){
-        if("未开始" === status){
-            this.$router.push({path:"courseNotStart"});
+    coursedetail(sub_id,status){
+        if("未开课" === status){
+            // this.$router.push({path:"courseNotStart",query: {sub_id: sub_id ,t_id: this.t_id}});
+            // this.$router.push({name:"courseNotStart",params: {sub_id: sub_id ,t_id: this.t_id}});
+            this.$router.push({name:"courseNotStart",params: {sub_id: sub_id ,t_id: this.t_id}});
         }else if("已结课" === status){
-            this.$router.push({path:"courseOver"});
-        }else if("去直播" === status){
-            this.$router.push({path:"courseStarted"});
+            this.$router.push({path:"courseOver",query:{sub_id: sub_id ,t_id: this.t_id}});
+        }else if("开课中" === status){
+            this.$router.push({path:"courseStarted",query:{sub_id: sub_id ,t_id: this.t_id}});
         };
     },
     onClickLeft() {
-      Toast('返回');
+       this.$router.back();
     },
     onLoad() {
       // 异步更新数据
       // setTimeout 仅做示例，真实场景中一般为 ajax 请求
       setTimeout(() => {
-        // for (let i = 0; i < 10; i++) {
-        //   this.subjectInfo.push(this.subjectInfo[i]);
-        // }
-
-        // 加载状态结束
+       
         this.loading = false;
         
         // 数据全部加载完成
@@ -128,11 +149,11 @@ export default {
 </script>
 <style scoped>
 .div1-1{
-    width: 10%;
+    width: 30%;
     float: left;
 }
 .div1-2{
-    width: 90%;
+    width: 50%;
     float: left;
     font-weight:bold;
     margin-top: 4%;
@@ -166,28 +187,29 @@ export default {
     text-align: center;
     margin: 17% 2% 0% 2%;
 }
-.divtd1{
+.div_td1{
     position: relative;
     width: 100%;
+    height: 100%;
 }
 .div_td2{
-    position: absolute;
-    width: 60%;
-    margin: -11% 2% 0% 2%;
+    margin: -17% 2% 0% 1%;
+    height: 20px;
+    width: 100%;
     text-align: left;
 }
 .div_td3{
     position: absolute;
-    /* margin-top: 3%; */
-     margin: 3% 1% 0% 1%;
+    float: left;
+    margin: 10% 1% 0% 1%;
 }
 .div_td4{
     position: absolute;
-    margin-top: 3%;
+    margin-top: 4%;
     text-align: right;
-    margin-left: 35%;
+    margin-left: 40%;
 }
 tr {
-    height: 100px;
+    height: 120px;
 }
 </style>
