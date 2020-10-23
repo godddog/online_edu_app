@@ -10,28 +10,24 @@
               v-model="totaltime"
               name="总课时"
               label="总课时"
-              placeholder="总课时"
+              placeholder="5天"
             />
             <van-field
               v-model="price"
               name="单价"
               label="单价"
-              placeholder="单价"
+              placeholder="480元/天"
             />
             <van-field
             v-model="money"
             name="课时费"
             label="课时费"
-            placeholder="课时费"
+            placeholder="2400元"
           />
 
       <van-radio-group v-model="radio">
         <van-cell-group>
-          <van-cell title="微信支付" clickable @click="radio = '1'">
-            <template #right-icon>
-              <van-radio name="1" />
-            </template>
-          </van-cell>
+
           <van-cell title="支付宝支付" clickable @click="radio = '2'">
             <template #right-icon>
               <van-radio name="2" />

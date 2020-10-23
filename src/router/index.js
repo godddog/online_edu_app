@@ -15,7 +15,11 @@ import MyOrder from '@/components/order/myorder'
 import StudentPage from '@/components/user_page/student'
 import TeacherPage from '@/components/user_page/teacher'
 import MyClassInfo from '@/components/views/myclassinfo'
-<<<<<<< HEAD
+import SelectTeacher from '@/components/user_page/selectTeacher'
+import Course from '@/components/teacher/course'
+import CourseNotStart from '@/components/teacher/coursenotstart'
+import CourseOver from '@/components/teacher/courseover'
+import CourseStarted from '@/components/teacher/coursestarted'
 import Subjectapply from '@/components/apply/subjectapply'
 import Verifyapply from '@/components/apply/verifyapply'
 import Paysuccess from '@/components/apply/paysuccess'
@@ -23,20 +27,7 @@ import Paysuccess from '@/components/apply/paysuccess'
 
 Vue.use(Router)
 
-export default new Router({
-  mode: "history",
-  routes: [
-=======
-import SelectTeacher from '@/components/user_page/selectTeacher'
-import Course from '@/components/teacher/course'
-import CourseNotStart from '@/components/teacher/coursenotstart'
-import CourseOver from '@/components/teacher/courseover'
-import CourseStarted from '@/components/teacher/coursestarted'
-
-Vue.use(Router)
-
   const routes = [
->>>>>>> ff805df1afa79a307dd3ade5d40b404711049009
     {
       path: '/login',
       name: 'Login',
@@ -58,14 +49,8 @@ Vue.use(Router)
       path: '/agree',
       component: agree
     },
-    
     {
-      path: '/forget',
-      component: forget
-    },
-<<<<<<< HEAD
-    {
-      path: '/allsubject',
+      path: '/allSubject',
       component: AllSubject
     },
     {
@@ -88,13 +73,15 @@ Vue.use(Router)
       path: '/paysuccess',
       component: Paysuccess
     },
-=======
+    {
+      path: '/forget',
+      component: forget
+    },
     {path: '/course',component: Course},
     {path: '/courseNotStart',component: CourseNotStart},
     {path: '/courseOver',component: CourseOver},
     {path: '/courseStarted',component: CourseStarted},
    
->>>>>>> ff805df1afa79a307dd3ade5d40b404711049009
     {
       path: '/',
       name: '/',
@@ -116,16 +103,17 @@ Vue.use(Router)
   
   })
   router.beforeEach((to,from,next)=>{
-   if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
-      next();
-   }else{
-      let author =localStorage.getItem('Author');
-      if(author===null||author===""){
-        next('/login');
-      }else{
-        next();
-      }
-    }
+  //  if(to.path==='/login'||to.path==='/register'||to.path==='/agree'||to.path==='/forget'){
+  //     next();
+  //  }else{
+  //     let author =localStorage.getItem('Author');
+  //     if(author===null||author===""){
+  //       next('/login');
+  //     }else{
+  //       next();
+  //     }
+  //   }
+  next();
   });
   
   export default router;

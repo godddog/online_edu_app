@@ -30,13 +30,13 @@
                 <tr v-for="item in subjectInfo" :key="item">
                   <td>
                     <div id="bottom_div">
-                   <img :src="item.pictureurl" width="100%" height="160px" @click="querydetail(item)" />
+                   <img :src="item.pictureUrl" width="100%" height="160px" @click="querydetail(item)" />
                   <div id="m120">
-                          &ensp;{{item.tip}}<br> 
+                          &ensp;{{item.subDesc}}<br> 
                   <div id="m123">
                      &ensp;
                     <img src="@/assets/icon/u276.png" />
-                      开课时间:&nbsp;&nbsp;{{item.time}}
+                      开课时间:&nbsp;&nbsp;{{item.liveTime}}
                   </div>
                   <div id="m124">
                     <van-button type="primary" round to="index">立即报名</van-button>
@@ -72,30 +72,45 @@ export default {
   data(){
     return{
       subjectInfo:[
-      {tip:'2020高考抢分训练营',
-      time:'2020-10-01',
-      pictureurl:'http://qi9wad36f.hn-bkt.clouddn.com/u275.png',
+      {subDesc:'2020高考抢分训练营',
+      liveTime:'2020-10-01',
+      pictureUrl:'http://qi9wad36f.hn-bkt.clouddn.com/u275.png',
       },
-      {tip:'高端1对1精品课',
-      time:'2020-10-02',
-      pictureurl:'http://qi9wad36f.hn-bkt.clouddn.com/s1.jpg',
+      {subDesc:'高端1对1精品课',
+      liveTime:'2020-10-02',
+      pictureUrl:'http://qi9wad36f.hn-bkt.clouddn.com/s1.jpg',
       },
-      {tip:'小初作文1对1短期课',
-      time:'2020-10-03',
-      pictureurl:'http://qi9wad36f.hn-bkt.clouddn.com/s4.jpg', 
+      {subDesc:'小初作文1对1短期课',
+      liveTime:'2020-10-03',
+      pictureUrl:'http://qi9wad36f.hn-bkt.clouddn.com/s4.jpg', 
       },
-      {tip:'2021中考',
-      time:'2020-10-01',
-      pictureurl:'http://qi9wad36f.hn-bkt.clouddn.com/s3.jpg',
+      {subDesc:'2021中考',
+      liveTime:'2020-10-01',
+      pictureUrl:'http://qi9wad36f.hn-bkt.clouddn.com/s3.jpg',
       },   
-      {tip:'2021中考',
-      time:'2020-10-01',
-      pictureurl:'http://qi9wad36f.hn-bkt.clouddn.com/s2.jpg',
+      {subDesc:'2021中考',
+      liveTime:'2020-10-01',
+      pictureUrl:'http://qi9wad36f.hn-bkt.clouddn.com/s2.jpg',
       },   
       ],
       loading: false,
       finished: false,
     }
+  },
+  created(){
+    alert("xxxxx"),
+    this.$axios
+    .get("subjectmanagement-service/subjectlist",{params:{subType:"语文"}})
+    .then(response=>{
+        console.log(response);
+        if(response.data.statusCode==200){
+            this.subjectInfo=response.data.data;
+            // console.log(this.subjectInfo);
+        }
+    })
+    .catch(error=>{
+      this.$message(error);
+    })
   },
   methods: {
     onLoad() {

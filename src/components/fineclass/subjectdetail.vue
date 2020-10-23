@@ -52,7 +52,7 @@
             </van-tabs> 
           </div>
           <div>
-            <van-submit-bar :price="3050" button-color="blue" button-text="立即报名" @submit="onSubmit" />
+            <van-submit-bar  button-color="blue" button-text="立即报名" @submit="onSubmit" />
           </div>
           </td>
         </tr>
@@ -76,6 +76,9 @@
           methods:{
             goback(){
            this.$router.go(-1);
+          },
+          onSubmit(){
+          this.$router.push('subjectapply');
           }
           }
         };
